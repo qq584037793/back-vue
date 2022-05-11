@@ -1,17 +1,20 @@
 <template>
   <!-- 全体布局 -->
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper"
+    :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']"
+  >
     <!-- 侧边菜单 -->
     <sidebar
       id="guide-sidebar"
       class="sidebar-container"
       :style="{ backgroundColor: variables.menuBg }"
     ></sidebar>
-  <div class="main-container">
-    <div class="fixer-header">
-      <!-- 导航栏 -->
-      <navbar />
-    </div>
+    <div class="main-container">
+      <div class="fixer-header">
+        <!-- 导航栏 -->
+        <navbar />
+      </div>
       <!-- 主画面 -->
       <app-main />
     </div>
@@ -41,5 +44,9 @@ import variables from '@/styles/variables.module.scss'
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
+  transform: width #{sideBarDuration};
+}
+.hideSidebar .fixed-header {
+  width: calc(100-#{$hideSideBarWidth});
 }
 </style>
